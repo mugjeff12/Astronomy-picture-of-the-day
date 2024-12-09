@@ -3,67 +3,13 @@ import streamlit as st
 from io import BytesIO
 from PIL import Image
 
-# Add custom starry background with an overlay for readability
-def add_bg_from_local():
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url("images.jpg");
-            background-attachment: fixed;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            color: black; /* Default text color */
-        }}
-        .stApp::before {{
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.2); /* Subtle overlay */
-            z-index: -1;
-        }}
-        .stTitle {{
-            text-align: center;
-            font-size: 2em;
-            font-weight: bold;
-            color: black; /* Black title */
-            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8); /* White shadow for contrast */
-        }}
-        .stMarkdown {{
-            color: black; /* Black text */
-            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5); /* Subtle shadow */
-            font-size: 1.1em;
-            line-height: 1.6em;
-        }}
-        .stButton button {{
-            font-size: 1.1em;
-            color: white !important;
-            background-color: #1e3a8a; /* Navy Blue */
-            border: none;
-            border-radius: 8px;
-            padding: 0.7em 1.2em;
-            margin-top: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }}
-        .stButton button:hover {{
-            background-color: #2b4cb0; /* Lighter Blue on Hover */
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-add_bg_from_local()
-
 api_key = "gLWraVyVri8rkUaRPvepPbqbj20fx14aqUQ45Med"
 
-# Title with a styled box
-st.markdown('<h1 class="stTitle">🌌 NASA Astronomy Picture of the Day 🌠</h1>', unsafe_allow_html=True)
+# Title
+st.markdown(
+    '<h1 style="text-align: center; font-size: 2em; font-weight: bold; color: black;">🌌 NASA Astronomy Picture of the Day 🌠</h1>',
+    unsafe_allow_html=True,
+)
 
 # Date picker and button layout
 selected_date = st.date_input("Select a date (optional)", value=None)
@@ -94,7 +40,7 @@ def fetch_and_display_apod(date=None):
     else:
         st.write("This content is a video. Watch it here:")
         st.write(content["url"])
-    st.markdown(f"<div class='stMarkdown'>{content['explanation']}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='color: black;'>{content['explanation']}</div>", unsafe_allow_html=True)
 
 # Automatically display today's picture on first load
 if not selected_date and not get_picture:
