@@ -14,7 +14,7 @@ def add_bg_from_local():
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            color: white;
+            color: black; /* Default text color */
         }}
         .stApp::before {{
             content: "";
@@ -23,20 +23,19 @@ def add_bg_from_local():
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            background-color: rgba(0, 0, 0, 0.2); /* Subtle overlay */
             z-index: -1;
         }}
         .stTitle {{
             text-align: center;
             font-size: 2em;
             font-weight: bold;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Add shadow for readability */
+            color: black; /* Black title */
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8); /* White shadow for contrast */
         }}
         .stMarkdown {{
-            background: none; /* No background */
-            padding: 0.5em 0;
-            color: white; /* Keep text white */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Slight shadow */
+            color: black; /* Black text */
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5); /* Subtle shadow */
             font-size: 1.1em;
             line-height: 1.6em;
         }}
@@ -95,7 +94,7 @@ def fetch_and_display_apod(date=None):
     else:
         st.write("This content is a video. Watch it here:")
         st.write(content["url"])
-    st.markdown(content["explanation"], unsafe_allow_html=True)
+    st.markdown(f"<div class='stMarkdown'>{content['explanation']}</div>", unsafe_allow_html=True)
 
 # Automatically display today's picture on first load
 if not selected_date and not get_picture:
