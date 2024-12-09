@@ -11,7 +11,7 @@ content = req.json()
 
 print(content)
 
-image_url = content["hdurl"]
+image_url = content["url"]
 # Download the image
 image_filepath = "img.png"
 response2 = requests.get(image_url)
