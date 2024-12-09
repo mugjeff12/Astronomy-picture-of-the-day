@@ -11,6 +11,15 @@ content = req.json()
 
 print(content)
 
+image_url = content["hdurl"]
+# Download the image
+image_filepath = "img.png"
+response2 = requests.get(image_url)
+with open(image_filepath, 'wb') as file:
+    file.write(response2.content)
+
+
 st.title(content["title"])
-st.image(content["hdurl"])
+st.image("img.png")
 st.write(content["explanation"])
+
